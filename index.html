@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nested directivetitle</title>
+  
+
+  <script src="js/lib/angular.min.js"></script>
+  
+
+  
+</head>
+<body ng-app="Mod">
+   <div ng-controller="SomeContrller">
+    {{someModel.someValue}}
+    {{myvalue}}
+    <button ng-click="someAction()">I am Parent</button>
+
+    <div ng-controller="ChildController">
+      {{someModel.someValue}}
+      {{myvalue}}
+      <button ng-click="childAction()">I am Child</button>
+    </div>
+
+  <script type="text/javascript">
+    var app = angular.module('Mod', []);
+    app.controller("SomeContrller",function($scope){
+      $scope.myvalue = "Default";
+      $scope.someModel = {
+        someValue:"This is From Computer"
+      }
+      $scope.someAction = function(){
+        $scope.myvalue = "from parent";
+        $scope.someModel.someValue = "This is from Parent button";
+      }
+    })
+    .controller("ChildController",function($scope){
+      $scope.childAction = function(){
+        $scope.myvalue = "from child";
+        $scope.someModel.someValue = "This is from Child button";
+      }
+    })
+  </script>
+</body>
+</html>
+
+<!-- 
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->
